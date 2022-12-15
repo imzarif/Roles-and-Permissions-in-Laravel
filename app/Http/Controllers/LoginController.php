@@ -27,9 +27,12 @@ class LoginController extends Controller
      */
     public function login(LoginRequest $request)
     {
+
+      //  dd($request->username);
         $credentials = $request->getCredentials();
 
         if(!Auth::validate($credentials)):
+            dd("yoyo");
             return redirect()->to('login')
                 ->withErrors(trans('auth.failed'));
         endif;

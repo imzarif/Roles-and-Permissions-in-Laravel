@@ -38,22 +38,19 @@
                             <form class="pt-3" method="POST" action="{{ route('login.perform') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control" placeholder="Email"
-                                        value="{{ old('email') }}">
-                                    @error('email')
-                                        <p class="error">{{ $message }}</p>
-                                    @enderror
-                                    @if (session('error'))
+                                    <input type="text" name="username" class="form-control" placeholder="Email"
+                                        value="{{ old('username') }}">
+                                    @if ($errors->has('username'))
                                         <p class="error">{{ session('error') }}</p>
                                     @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="">Password</label>
-                                    <input type="password" name="password" class="form-control"
+                                    <input type="password" name="password" class="form-control" value="{{ old('password') }}"
                                         placeholder="password">
-                                    @error('password')
+                                    @if ($errors->has('password'))
                                         <p class="error">{{ $message }}</p>
-                                    @enderror
+                                    @endif
                                 </div>
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-red btn-block">Login as Partner</button>

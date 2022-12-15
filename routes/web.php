@@ -19,9 +19,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     /**
      * Home Routes
      */
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/conceptList', 'ConceptController@index')->name('cpc');
-    Route::get('/conceptCreate', 'ConceptController@create')->name('create');
+    // Route::get('/', 'HomeController@index')->name('home');
+    // Route::get('/conceptList', 'ConceptController@index')->name('cpc');
+    // Route::get('/conceptCreate', 'ConceptController@create')->name('create');
+
 
     Route::group(['middleware' => ['guest']], function() {
         /**
@@ -38,13 +39,35 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
 
     });
+    Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
 
-    Route::group(['middleware' => ['auth']], function() {
+    Route::group(['middleware' => ['auth', 'permission']], function() {
+
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/conceptList', 'ConceptController@index')->name('cpc');
+        Route::get('/conceptCreate', 'ConceptController@create')->name('create');
+
         /**
          * Logout Routes
          */
-        Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+
+         Route::group(['prefix' => 'users'], function() {
+            Route::get('/', 'UsersController@index')->name('users.index');
+            Route::get('/create', 'UsersController@create')->name('users.create');
+            Route::post('/create', 'UsersController@store')->name('users.store');
+            Route::get('/{user}/show', 'UsersController@show')->name('users.show');
+            Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
+            Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
+            Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
+        });
+
+
     });
+
+    Route::resource('roles', RolesController::class);
+    Route::resource('permissions', PermissionsController::class);
+
+
 });
 
 // Route::get('/', function () {

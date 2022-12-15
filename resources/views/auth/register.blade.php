@@ -39,6 +39,13 @@
                                         <p class="error">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Username:</label>
+                                    <input type="text" name="username" class="form-control" placeholder="Username">
+                                    @error('username')
+                                        <p class="error">{{ $message }}</p>
+                                    @enderror
+                                </div>
 
                                 <div class="form-group">
                                     <label for="">Password</label>
