@@ -1,4 +1,4 @@
-      
+
       <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -15,7 +15,24 @@
               <span class="menu-title">CP Concept</span>
             </a>
           </li>
-         
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('users.index')}}">
+              <i class="mdi mdi-view-headline menu-icon"></i>
+              <span class="menu-title">Users</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('permissions.index')}}">
+              <i class="mdi mdi-view-headline menu-icon"></i>
+              <span class="menu-title">Permissions</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('roles.index')}}">
+              <i class="mdi mdi-view-headline menu-icon"></i>
+              <span class="menu-title">Roles</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="mdi mdi-circle-outline menu-icon"></i>
@@ -29,7 +46,7 @@
               </ul>
             </div>
           </li>
-        
+
           <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
               <i class="mdi mdi-chart-pie menu-icon"></i>

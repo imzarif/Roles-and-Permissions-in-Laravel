@@ -61,11 +61,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
         });
 
-
+        Route::resource('roles', RolesController::class);
+        Route::resource('permissions', PermissionsController::class);
     });
 
-    Route::resource('roles', RolesController::class);
-    Route::resource('permissions', PermissionsController::class);
+    // Route::resource('roles', RolesController::class);
+    // Route::resource('permissions', PermissionsController::class);
 
 
 });

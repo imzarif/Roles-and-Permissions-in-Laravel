@@ -40,9 +40,9 @@
                                 <div class="form-group">
                                     <input type="text" name="username" class="form-control" placeholder="Email"
                                         value="{{ old('username') }}">
-                                    @if ($errors->has('username'))
-                                        <p class="error">{{ session('error') }}</p>
-                                    @endif
+                                    @error('username')
+                                    <p class="error">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="">Password</label>

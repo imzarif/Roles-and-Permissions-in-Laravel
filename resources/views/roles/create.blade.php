@@ -1,7 +1,89 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-light p-4 rounded">
+
+<style>
+    th {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    td {
+        text-align: center;
+    }
+</style>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+
+        <div class="row">
+            <div class="col-md-12 grid-margin">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <div class="d-flex align-items-end flex-wrap">
+                        <div class="me-md-3 me-xl-5">
+                            <h1>Add new role</h1>
+                            <div class="lead">
+                                Add new role and assign permissions.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <form method="POST" action="{{ route('roles.store') }}">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input value="{{ old('name') }}"
+                                        type="text"
+                                        class="form-control"
+                                        name="name"
+                                        placeholder="Name" required>
+                                </div>
+
+                                <label for="permissions" class="form-label">Assign Permissions</label>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th scope="col" width="1%"><input type="checkbox" name="all_permission"></th>
+                                        <th scope="col" width="20%">Name</th>
+                                        <th scope="col" width="1%">Guard</th>
+                                    </thead>
+
+                                    @foreach($permissions as $permission)
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox"
+                                                name="permission[{{ $permission->name }}]"
+                                                value="{{ $permission->name }}"
+                                                class='permission'>
+                                            </td>
+                                            <td>{{ $permission->name }}</td>
+                                            <td>{{ $permission->guard_name }}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+
+                                <button type="submit" class="btn btn-primary">Save user</button>
+                                <a href="{{ route('users.index') }}" class="btn btn-default">Back</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    {{-- <div class="bg-light p-4 rounded">
         <h1>Add new role</h1>
         <div class="lead">
             Add new role and assign permissions.
@@ -79,5 +161,5 @@
 
             });
         });
-    </script>
+    </script> --}}
 @endsection
